@@ -1,0 +1,55 @@
+{% block content %}
+<style>
+    .login-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80vh; /* Adjust the height to your preference */
+    }
+  
+    .login-container img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      z-index: -1;
+    }
+  
+    .centered-content {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      margin-top: 50px; /* Adjust the margin-top to move down the login area */
+    }
+
+    .white-horse-text {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 20px; /* Adjust the margin-bottom to create space between "White Horse" and the form */
+    }
+  
+    /* Add any additional styling as needed */
+  </style>
+  
+  <div class="login-container">
+    <img src="https://images.axios.com/U_5AbLfdoifLa8ev_E9rp8annI4=/0x0:1920x1080/1920x1080/2023/08/28/1693262960231.jpg" alt="Background Image">
+    <div class="centered-content">
+      <p class="white-horse-text">White Horse</p>
+      <h2>Login</h2>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

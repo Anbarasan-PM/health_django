@@ -1,0 +1,54 @@
+{% extends 'partials/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<style>
+  body {
+    
+    background-image: url('https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: #f7f5d1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1; 
+    padding-top: 20px;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .card {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black;
+  }
+
+  .white-horse {
+    font-family: 'Script Typeface', cursive;
+    font-size: 3em;
+    color: darkgoldenrod;
+    text-align: center;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="container">
+  <p class="white-horse">White Horse</p>
+  <div class="row mt-4">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow">
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  {# Display the form fields as paragraphs #}
+            <input class="btn btn-info" type="submit" value="Make Classification">
+          </form>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

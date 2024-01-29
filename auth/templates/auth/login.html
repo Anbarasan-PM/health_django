@@ -1,0 +1,14 @@
+{% extends 'partials/base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label for="otp">Enter OTP:</label>
+    <input type="text" name="otp" id="otp" required>
+    <input type="hidden" name="phone_number" value="{{ form.phone_number.value }}">
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+{% endblock %}

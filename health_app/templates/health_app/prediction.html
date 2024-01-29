@@ -1,0 +1,165 @@
+{% extends 'partials/base.html' %}
+{% block title %}All Classification{% endblock %}
+
+{% block content %}
+
+<style>
+  body {
+    background-image: url('https://wallpapers.com/images/featured/beautiful-3vau5vtfa3qn7k8v.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(221, 212, 212, 0.7);
+    z-index: 1;
+  }
+
+  .container {
+    z-index: 1;
+    position: relative;
+    padding-top: 20px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .table-container {
+    max-height: 400px; /* Adjust the maximum height for vertical scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+
+  .table {
+    background-color: #b4bdb4;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling */
+  }
+
+  .table th {
+    padding: 15px;
+    font-weight: bold;
+  }
+
+  .table td {
+    padding: 15px;
+    font-weight: normal;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #bbc6bb;
+  }
+
+  .moving-text {
+    position: absolute;
+    top: 22px;
+    left: -100%;
+    white-space: nowrap;
+    font-size: 24px;
+    color: red;
+    font-style: italic;
+    z-index: 3;
+    animation: moveRight 5s linear infinite;
+  }
+
+  @keyframes moveRight {
+    to {
+      left: 100%;
+    }
+  }
+
+  .bottom-text {
+    position: absolute;
+    bottom: 22px;
+    right: -100%;
+    white-space: nowrap;
+    font-size: 24px;
+    color: red;
+    font-style: italic;
+    z-index: 3;
+    animation: moveLeft 5s linear infinite;
+  }
+
+  @keyframes moveLeft {
+    to {
+      right: 100%;
+    }
+  }
+
+  .script-font {
+    font-family: 'Script Typeface', cursive;
+    font-size: 3em;
+    color: green;
+    text-align: center;
+    margin-top: 18px;
+  }
+
+  .hospital-name {
+    font-family: 'Script Typeface', cursive;
+    font-size: 1.8em;
+    color: darkviolet;
+    text-align: center;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="overlay"></div>
+
+<div class="container">
+  <p class="hospital-name">White Horse</p>
+  <div class="row mt-4">
+    <div class="col-md-12 table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Disease</th>
+            <th scope="col">Fever</th>
+            <th scope="col">Cough</th>
+            <th scope="col">Fatigue</th>
+            <th scope="col">Breathing</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Pressure</th>
+            <th scope="col">Cholesterol</th>
+            <th scope="col">Age</th>
+            <th scope="col">Prediction</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data,encryption in zipp %}
+            <tr>
+              <td>{{ data.Name }}</td>
+              <td>{{ encryption.Disease }}</td>
+              <td>{{ encryption.Fever }}</td>
+              <td>{{ encryption.Cough }}</td>
+              <td>{{ encryption.Fatigue }}</td>
+              <td>{{ encryption.Difficult_Breathing }}</td>
+              <td>{{ encryption.Gender}}</td>
+              <td>{{ encryption.Blood_Pressure}}</td>
+              <td>{{ encryption.Cholesterol_Level}}</td>
+              <td>{{ encryption.Age}}</td>
+              <td>{{ data.prediction }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="moving-text">
+  {% now "yymmddhhmmss" %}
+</div>
+
+<div class="bottom-text">
+  {% now "yymmddhhmmss" %}
+</div>
+
+{% endblock %}
