@@ -1,0 +1,6 @@
+Django==4.2.8
+scikit-learn==1.2.0
+django-crispy-forms==1.13.0
+pathlib==1.11.3
+joblib==3.4.0
+
